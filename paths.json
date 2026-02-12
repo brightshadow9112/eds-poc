@@ -1,10 +1,10 @@
 {
   "mappings": [
-    "/content/agitationinalz/:/",
-    "/content/agitationinalz/configuration:/.helix/config.json",
-    "/content/agitationinalz/metadata:/metadata.json"
+    "/content/eds-poc-km/:/",
+    "/content/eds-poc-km/configuration:/.helix/config.json",
+    "/content/eds-poc-km/metadata:/metadata.json"
   ],
   "includes": [
-    "/content/agitationinalz/"
+    "/content/eds-poc-km/"
   ]
 }
