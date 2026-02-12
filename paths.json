@@ -1,0 +1,10 @@
+{
+  "mappings": [
+    "/content/agitationinalz/:/",
+    "/content/agitationinalz/configuration:/.helix/config.json",
+    "/content/agitationinalz/metadata:/metadata.json"
+  ],
+  "includes": [
+    "/content/agitationinalz/"
+  ]
+}

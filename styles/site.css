@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&display=swap");
+
+:root {
+    --bs-color-black: #000;
+    --bs-color-white: #fff;
+    --bs-color-red: #c1443b;
+    --bs-color-yellow: #ffb718;
+    --bs-color-yellow-hover-bg: #ffc23b;
+    --bs-color-yellow-hover-border: #ffbe2f;
+    --bs-color-gray: #253958;
+    --bs-body-color: #112D32;
+    --bs-body-font-family: "Assistant", "Arial", sans-serif;
+    --bs-body-font-size: 1rem;
+    --bs-body-font-weight: 400;
+    --bs-body-line-height: 1.5;
+    --bs-breakpoint-xs: 0;
+    --bs-breakpoint-sm: 36em;
+    --bs-breakpoint-md: 48em;
+    --bs-breakpoint-lg: 62em;
+    --bs-breakpoint-xl: 75em;
+    --bs-breakpoint-xxl: 87.5em;
+    --bs-btn-icon-width: 1.5rem;
+    --bs-btn-icon-height: 1.5rem;
+    --bs-btn-icon-gap: 0.25rem;
+    --bs-btn-icon-margin: 0.375rem;
+}
+
+body {
+    font-family: var(--bs-body-font-family);
+    font-size: var(--bs-body-font-size);
+    font-weight: var(--bs-body-font-weight);
+    line-height: var(--bs-body-line-height);
+    color: var(--bs-body-color);
+  
+}
+
+/* Start: Button grid block styles  */
+main {
+    min-height: 1000px;
+}
+
+.section.button-grid {
+    position: sticky;
+    padding: 0 0.625rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:.25rem;
+}
+
+.button-grid .icon-button-wrapper {
+    padding: 0;
+    margin: 0;
+}
+
+.section.button-grid .icon-button-link {
+    height: 48px;
+    max-width: 369px;
+    padding: 0.5625rem 2.25rem;
+    font-size: 1.25rem;
+    line-height: 1.125rem;
+    transition: 0.4s;
+}
+
+.section.button-grid .icon-button-text {
+    font-size: 1.375rem;
+    font-weight: 700;
+    line-height: 2.0625rem;
+}
+
+.section.button-grid .icon-button-icon {
+    width: 35px;
+    height: 35px;
+    margin: 0 0 0 0.625rem;
+}
+
+@media (width < 48em) { 
+    .section.button-grid .icon-button-link {
+        width: 369px;
+    }
+}
+
+@media (width >= 48em) {
+    .section.button-grid {
+        top: 116px;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+        flex-direction: row;
+        gap: 0.625rem;
+    }
+
+    .section.button-grid .icon-button-link {
+        font-size: 1rem;
+        padding: 0.375rem 0;
+        width: 179px;
+    }
+
+    .section.button-grid .icon-button-text {
+        font-size: 1.125rem;
+        line-height: 1.6875rem;
+    }
+}
+
+@media (width >= 62em) {
+    .section.button-grid  {
+        gap: 1.125rem;
+    }
+
+    .section.button-grid .icon-button-link {
+        padding: 0.5625rem 0;
+        font-size: 1.125rem;
+        width: 207px;
+    }
+}
+
+@media (width>= 75em) {
+    .section.button-grid .icon-button-link {
+        font-size: 1.375rem;
+        height: 56px;
+        width: 272px;
+    }
+}
+
+/* END: Button grid block styles  */
