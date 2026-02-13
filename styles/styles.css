@@ -55,7 +55,6 @@ footer .footer[data-block-status="loaded"] {
   visibility: visible;
 }
 
-p,
 dl,
 ol,
 ul,
@@ -143,7 +142,6 @@ main .section.light,
 main .section.highlight {
   background-color: var(--light-color);
   margin: 0;
-  padding: 40px 0;
 }
 
 /* Faintly template system styles */

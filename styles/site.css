@@ -48,6 +48,7 @@ main {
     justify-content: center;
     align-items: center;
     gap:.25rem;
+    z-index: 1;
 }
 
 .button-grid .icon-button-wrapper {
@@ -84,11 +85,12 @@ main {
 
 @media (width >= 48em) {
     .section.button-grid {
-        top: 116px;
+        top: var(--nav-height);
         padding-top: 1.5rem;
         padding-bottom: 1.5rem;
         flex-direction: row;
         gap: 0.625rem;
+        padding: 24px 0;
     }
 
     .section.button-grid .icon-button-link {
@@ -124,3 +126,44 @@ main {
 }
 
 /* END: Button grid block styles  */
+
+/* global styles */
+body {
+    background: #ebe9e1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--bs-color-gray);
+    font-size: 700;
+    margin: 0;
+    line-height: 2;
+}
+
+h1 {
+    font-size: 30px;
+    line-height: 1.06;
+}
+
+h4 {
+    color: var(--bs-color-red);
+    font-size: 20px;
+}
+
+p {
+    font-size: 16px;
+    line-height: normal;
+    font-weight: 400;
+    margin: 0 0 16px;
+    color: #4f4a41
+}
+
+@media screen and (min-width: 48em) {
+    h1 {
+        font-size: 48px;
+        line-height: 1.12;
+    }
+
+    h4 {
+        font-size: 24px;
+    }
+}

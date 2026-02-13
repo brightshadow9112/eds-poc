@@ -81,6 +81,5 @@
     .videoplaylist .vp-slider-for {width: 62.6%;}
     .videoplaylist .vp-slider-nav {width: 37.4%;}
     .videoplaylist .vp-shell {flex-direction: row; gap: 15px;}
+    .videoplaylist-container {padding: 62px 0;}
 }
-
-header .nav-wrapper {display: none !important;}
