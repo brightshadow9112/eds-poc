@@ -1,15 +1,15 @@
 import {
-  loadHeader,
-  loadFooter,
+  decorateBlocks,
   decorateButtons,
   decorateIcons,
   decorateSections,
-  decorateBlocks,
   decorateTemplateAndTheme,
-  waitForFirstImage,
+  loadCSS,
+  loadFooter,
+  loadHeader,
   loadSection,
   loadSections,
-  loadCSS,
+  waitForFirstImage,
 } from './aem.js';
 
 /**
@@ -65,6 +65,21 @@ export function moveInstrumentation(from, to) {
 }
 
 /**
+ * Wraps images followed by links within a matching <a> tag.
+ * @param {Element} container The container element
+ */
+function wrapImgsInLinks(container) {
+  const pictures = container.querySelectorAll('picture');
+  pictures.forEach((pic) => {
+    const link = pic.nextElementSibling;
+    if (link && link.tagName === 'A' && link.href) {
+      link.innerHTML = pic.outerHTML;
+      pic.replaceWith(link);
+    }
+  });
+}
+
+/**
  * load fonts.css and set a session storage flag
  */
 async function loadFonts() {
@@ -101,6 +116,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  wrapImgsInLinks(main);
 }
 
 /**
