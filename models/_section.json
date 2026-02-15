@@ -45,6 +45,14 @@
             {
               "name": "Share your story",
               "value": "share-your-story"
+            },
+            {
+              "name": "CTA",
+              "value": "call-to-action"
+            },
+            {
+              "name": "Column View",
+              "value": "column-view"
             }
           ]
         }
