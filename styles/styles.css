@@ -77,15 +77,15 @@ pre {
   white-space: pre;
 }
 
-main > div {
+/* main > div {
   margin: 40px 16px;
-}
+} */
 
-input,
+/* input,
 textarea,
 select {
   font: inherit;
-}
+} */
 
 /* links */
 a:any-link {
@@ -99,11 +99,11 @@ a:hover {
   text-decoration: underline;
 }
 
-main img {
+/* main img {
   max-width: 100%;
   width: auto;
   height: auto;
-}
+} */
 
 .icon {
   display: inline-block;
@@ -117,9 +117,9 @@ main img {
 }
 
 /* sections */
-main > .section {
+/* main > .section {
   margin: 40px 0;
-}
+} */
 
 main > .section > div {
   max-width: 1200px;
@@ -127,21 +127,21 @@ main > .section > div {
   padding: 0 24px;
 }
 
-main > .section:first-of-type {
+/* main > .section:first-of-type {
   margin-top: 0;
-}
+} */
 
-@media (width >= 900px) {
+/* @media (width >= 900px) {
   main > .section > div {
     padding: 0 32px;
   }
-}
+} */
 
 /* section metadata */
-main .section.light,
+/* main .section.light, */
 main .section.highlight {
   background-color: var(--light-color);
-  margin: 0;
+  /* margin: 0; */
 }
 
 /* Faintly template system styles */
