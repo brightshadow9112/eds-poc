@@ -1,32 +1,53 @@
 :root {
     /* colors */
     --background-color: white;
-    --light-color: #f8f8f8;
+    --light-color: #fff;
     --dark-color: #505050;
     --text-color: #131313;
     --link-color: #3b63fb;
     --link-hover-color: #1d3ecf;
-
     /* fonts */
     --body-font-family: roboto, roboto-fallback, sans-serif;
     --heading-font-family: roboto-condensed, roboto-condensed-fallback,
         sans-serif;
 
-    /* body sizes */
-    --body-font-size-m: 22px;
-    --body-font-size-s: 19px;
-    --body-font-size-xs: 17px;
-
+    /* to be retained */
     /* heading sizes */
-    --heading-font-size-xxl: 55px;
-    --heading-font-size-xl: 44px;
-    --heading-font-size-l: 34px;
-    --heading-font-size-m: 27px;
-    --heading-font-size-s: 24px;
-    --heading-font-size-xs: 22px;
+    --heading-font-size-h1: 1.875rem;
+    --heading-font-size-h2: 1.625rem;
+    /* --heading-font-size-h3: 24px; */
+    --heading-font-size-h4: 1.25rem;
+    --heading-font-size-h5: 1.25rem;
+    /* --heading-font-size-h6: 18px; */
+    
+    /* body-sizes */
+    --body-size-large: 1.375rem;
+    --body-size-medium: 1.25rem;
+    --body-size-small: 1.125rem;
+    --body-size-xsmall: 1rem;
 
+    /* font-weight */
+    --font-weight-bold: 700;
+    --font-weight-regular: 400;
+    --font-weight-light: 300;
     /* nav height */
-    --nav-height: 64px;
+    --nav-height: 167px;
+
+    /* container size */
+    --container-max-width: 1142px;
+    --mobile-spacing: 10px;
+    --desktop-spacing: 16px;
+    --container-width: calc(100% - calc(var(--mobile-spacing) * 2));
+}
+
+@media (width >= 48em) {
+    :root {
+        --heading-font-size-h1: 2.5rem;
+        --heading-font-size-h2: 2.25rem;
+        --heading-font-size-h4: 1.5rem;
+        --container-width: calc(100% - calc(var(--desktop-spacing) * 2));
+        --nav-height: calc(88px + 28px); /* 88px is the height of the logo, 28px is the vertical padding on the nav */
+    }
 }
 
 /* fallback fonts */
@@ -46,4 +67,8 @@
 *::before,
 *::after {
     box-sizing: border-box;
+}
+
+html {
+    font-size: 100%;
 }
