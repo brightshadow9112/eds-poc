@@ -54,6 +54,7 @@ main {
 .button-grid .icon-button-wrapper {
     padding: 0;
     margin: 0;
+    width: auto;
 }
 
 .section.button-grid .icon-button-link {
@@ -146,6 +147,7 @@ h1 {
 
 h2 {
     font-size: var(--heading-font-size-h2);
+    line-height: 1.22;
 }
 
 h4 {
@@ -207,5 +209,21 @@ p {
 
     .call-to-action .icon-button-wrapper {
         max-width: 171px;
+    }
+}
+
+/* column view section */
+.section.column-view .columns-wrapper img:not([alt*="mobile-only"]) {
+    display: none;
+}
+
+@media screen and (min-width: 48em) {
+
+    .section.column-view .columns-wrapper img:not([alt*="mobile-only"]) {
+        display: block;
+    }
+
+    .section.column-view .columns-wrapper img[alt*="mobile-only"]{
+        display: none;
     }
 }

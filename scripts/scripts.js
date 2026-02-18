@@ -71,10 +71,24 @@ export function moveInstrumentation(from, to) {
 function wrapImgsInLinks(container) {
   const pictures = container.querySelectorAll('picture');
   pictures.forEach((pic) => {
-    const link = pic.nextElementSibling;
-    if (link && link.tagName === 'A' && link.href) {
-      link.innerHTML = pic.outerHTML;
-      pic.replaceWith(link);
+    const parentP = pic.parentElement;
+    if (parentP && parentP.tagName === 'P') {
+      // Find the next sibling <p>
+      let next = parentP.nextElementSibling;
+      if (next && next.tagName === 'P') {
+        // Check if <p> contains only an <a> (and maybe whitespace/text)
+        const aTags = Array.from(next.children).filter((el) => el.tagName === 'A' && el.href);
+        if (aTags.length === 1 && next.children.length === 1) {
+          const link = aTags[0];
+          // Move <picture> inside <a>
+          link.innerHTML = pic.outerHTML;
+          // Replace the <picture>'s <p> and the <a>'s <p> with a single <p> containing the <a>
+          const newP = document.createElement('p');
+          newP.appendChild(link);
+          parentP.replaceWith(newP);
+          next.remove();
+        }
+      }
     }
   });
 }

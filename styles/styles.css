@@ -120,7 +120,14 @@ a:hover {
 main > .section > div {
   max-width: 1142px;
   margin: auto;
+  width: calc(100% - 20px); /* 10px is the horizontal padding on the section */
   /* padding: 0 24px; */
+}
+
+@media (width >= 48em) {
+  main > .section > div {
+    width: calc(100% - 32px); /* 16px is the horizontal padding on the section */
+  }
 }
 
 /* main > .section:first-of-type {
@@ -138,6 +145,10 @@ main > .section > div {
 .section.highlight {
   background-color: var(--light-color);
   /* margin: 0; */
+}
+
+.section.uniform-spacing {
+  padding: var(--uniform-spacing);
 }
 
 /* Faintly template system styles */

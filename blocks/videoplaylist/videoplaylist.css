@@ -41,7 +41,7 @@
 }
 
 /* mew styles */
-.videoplaylist-wrapper {padding: 0 16px;}
+/* .videoplaylist-wrapper {padding: 0 16px;} */
 .videoplaylist.vp { --vp-max: 1174px; margin: 24px auto; max-width: var(--vp-max);}
 .slick-slider {
     position: relative;
@@ -76,10 +76,10 @@
 .videoplaylist .vp-slider-nav .slick-track .vp-navitem .vp-duration {font-size: 15px; font-weight: 400; color: #567479; line-height: 22.5px;}
 .videoplaylist .vp-slider-nav .slick-track .vp-navitem-thumb {width: 100%; height: auto; margin-right: 17px; max-width: 158px; aspect-ratio: 16 / 9;}
 .videoplaylist .slick-dots {display: none !important;}
+
 @media screen and (min-width: 768px) {
     .videoplaylist-wrapper {padding: 0 10px;}
     .videoplaylist .vp-slider-for {width: 62.6%;}
     .videoplaylist .vp-slider-nav {width: 37.4%;}
     .videoplaylist .vp-shell {flex-direction: row; gap: 15px;}
-    .videoplaylist-container {padding: 62px 0;}
 }

@@ -38,6 +38,9 @@
     --mobile-spacing: 10px;
     --desktop-spacing: 16px;
     --container-width: calc(100% - calc(var(--mobile-spacing) * 2));
+
+    /* uniform spacing */
+    --uniform-spacing: 32px 0;
 }
 
 @media (width >= 48em) {
@@ -47,6 +50,7 @@
         --heading-font-size-h4: 1.5rem;
         --container-width: calc(100% - calc(var(--desktop-spacing) * 2));
         --nav-height: calc(88px + 28px); /* 88px is the height of the logo, 28px is the vertical padding on the nav */
+        --uniform-spacing: 62px 0;
     }
 }
 
@@ -71,4 +75,8 @@
 
 html {
     font-size: 100%;
+}
+
+html:has(body.zoomed-in) {
+    font-size: 140%;
 }

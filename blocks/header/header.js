@@ -1,3 +1,16 @@
+/**
+ * Sets up a click handler to toggle the 'zoomed-in' class on <body>
+ * when the selector header .nav-brand .default-content-wrapper p:nth-child(2) is clicked.
+ */
+function setupZoomToggle() {
+  document.addEventListener('click', (e) => {
+    // Only toggle if the clicked element or its ancestor matches the selector
+    const target = e.target.closest('header .nav-brand .default-content-wrapper p:nth-child(2)');
+    if (target) {
+      document.body.classList.toggle('zoomed-in');
+    }
+  });
+}
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
@@ -163,4 +176,7 @@ export default async function decorate(block) {
   navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
   block.append(navWrapper);
+
+  // Setup zoom toggle for nav-brand text
+  setupZoomToggle();
 }

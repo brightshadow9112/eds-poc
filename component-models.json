@@ -76,6 +76,10 @@
           {
             "name": "Column View",
             "value": "column-view"
+          },
+          {
+            "name": "Uniform Spacing",
+            "value": "uniform-spacing"
           }
         ]
       }

@@ -1,6 +1,7 @@
 footer {
   padding: 40px 0 68px;
   background-color: var(--light-color);
+  margin-top: 16px;
 }
 
 footer .footer p {
@@ -47,5 +48,6 @@ footer .footer ul {
 @media screen and (min-width: 48em) { 
   footer {
     padding: 71px 0 58px;
+    margin-top: 48px;
   }
 }

@@ -38,6 +38,10 @@ header .nav-brand img {
   overflow: hidden;
 }
 
+header .nav-brand img:hover {
+  cursor: pointer;
+}
+
 header .nav-hamburger {
   display: none;
 }
@@ -45,6 +49,36 @@ header .nav-hamburger {
 header .icon-button-container {
   max-width: 368px;
 }
+
+header .nav-brand .default-content-wrapper p:nth-child(2) {
+  font-size: 16px;
+  line-height: 1.12;
+  color: #000;
+  text-transform: uppercase;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  margin: 0;
+}
+
+header .nav-brand .default-content-wrapper p:nth-child(2) a {
+  color: inherit;
+  font-size: 22px;
+}
+
+header .nav-brand .default-content-wrapper p:nth-child(2) a:first-child {
+  font-size: 16px;
+  margin: 0 13px;
+  border-bottom: 5px solid var(--bs-color-yellow);
+}
+
+body.zoomed-in header .nav-brand .default-content-wrapper p:nth-child(2) a:first-child {
+  border-bottom: none;
+}
+
+body.zoomed-in header .nav-brand .default-content-wrapper p:nth-child(2) a:nth-child(2) {
+  border-bottom: 5px solid var(--bs-color-yellow);
+}
+
 
 @media (width >= 48em) {
 
