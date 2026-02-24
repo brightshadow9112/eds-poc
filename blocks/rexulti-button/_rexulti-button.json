@@ -9,22 +9,7 @@
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
               "name": "Rexulti Button",
-              "filter": "rexulti-button"
-            }
-          }
-        }
-      }
-    },
-    {
-      "title": "Rexulti Button State",
-      "id": "rexulti-button-state",
-      "plugins": {
-        "xwalk": {
-          "page": {
-            "resourceType": "core/franklin/components/block/v1/block/item",
-            "template": {
-              "name": "Rexulti Button State",
-              "model": "rexulti-button-state"
+              "model": "rexulti-button"
             }
           }
         }
@@ -33,7 +18,7 @@
   ],
   "models": [
     {
-      "id": "rexulti-button-state",
+      "id": "rexulti-button",
       "fields": [
         {
           "component": "text",
@@ -73,12 +58,5 @@
       ]
     }
   ],
-  "filters": [
-    {
-      "id": "rexulti-button",
-      "components": [
-        "rexulti-button-state"
-      ]
-    }
-  ]
+  "filters": []
 }

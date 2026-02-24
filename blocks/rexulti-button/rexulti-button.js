@@ -12,18 +12,28 @@ function getCellText(cell) {
 function normalizeButtonStyle(value) {
   const normalized = (value || '').trim().toLowerCase();
   if (normalized === 'icon only') return 'icon-only';
+  if (normalized === 'icononly') return 'icon-only';
   if (['primary', 'secondary', 'tertiary', 'icon-only', 'disabled'].includes(normalized)) {
     return normalized;
   }
-  return normalized === 'secondary' ? 'secondary' : 'primary';
+  return 'primary';
 }
 
-function parseRow(row) {
-  const cells = [...row.children];
+function getFieldValue(block, index) {
+  const row = block.children[index];
+  if (!row) return '';
 
+  const directCellText = [...row.children]
+    .map((cell) => getCellText(cell))
+    .find(Boolean);
+
+  return directCellText || getCellText(row);
+}
+
+function parseBlock(block) {
   return {
-    buttonText: getCellText(cells[0]) || DEFAULTS.buttonText,
-    buttonStyle: normalizeButtonStyle(getCellText(cells[1]) || DEFAULTS.buttonStyle),
+    buttonText: getFieldValue(block, 0) || DEFAULTS.buttonText,
+    buttonStyle: normalizeButtonStyle(getFieldValue(block, 1) || DEFAULTS.buttonStyle),
   };
 }
 
@@ -67,14 +77,6 @@ function createButton(item) {
 }
 
 export default function decorate(block) {
-  const authoredRows = [...block.querySelectorAll(':scope > div')];
-  if (!authoredRows.length) return;
-
-  block.classList.add('button-demo');
-
-  authoredRows.forEach((row) => {
-    const item = parseRow(row);
-    row.classList.add('button-demo__row');
-    row.replaceChildren(createButton(item));
-  });
+  const item = parseBlock(block);
+  block.replaceChildren(createButton(item));
 }

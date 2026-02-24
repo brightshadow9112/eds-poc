@@ -934,7 +934,7 @@
     ]
   },
   {
-    "id": "rexulti-button-state",
+    "id": "rexulti-button",
     "fields": [
       {
         "component": "text",
