@@ -14,23 +14,23 @@
   --figma-btn-icon-only-padding-inline: 12px;
   --figma-btn-icon-only-padding-block: 6px;
 
-  --figma-btn-primary-bg-default: var(--buttons/primary/background-default, #ffb718);
-  --figma-btn-primary-bg-hover: var(--buttons/primary/background-hover, #d5a106);
-  --figma-btn-primary-bg-disabled: var(--buttons/primary/background-disabled, #d2d3d3);
-  --figma-btn-primary-text-default: var(--buttons/primary/text-default, #144633);
-  --figma-btn-primary-text-disabled: var(--buttons/primary/text-disabled, #6c757d);
+  --figma-btn-primary-bg-default: #ffb718;
+  --figma-btn-primary-bg-hover: #d5a106;
+  --figma-btn-primary-bg-disabled: #d2d3d3;
+  --figma-btn-primary-text-default: #144633;
+  --figma-btn-primary-text-disabled: #6c757d;
 
-  --figma-btn-secondary-bg-default: var(--buttons/secondary/background-default, #436b5c);
-  --figma-btn-secondary-bg-hover: var(--buttons/secondary/background-hover, #144633);
-  --figma-btn-secondary-bg-disabled: var(--buttons/secondary/background-disabled, #d2d3d3);
-  --figma-btn-secondary-text-default: var(--buttons/secondary/text-default, #ffffff);
-  --figma-btn-secondary-text-disabled: var(--buttons/secondary/text-disabled, #6c757d);
+  --figma-btn-secondary-bg-default: #436b5c;
+  --figma-btn-secondary-bg-hover: #144633;
+  --figma-btn-secondary-bg-disabled: #d2d3d3;
+  --figma-btn-secondary-text-default: #ffffff;
+  --figma-btn-secondary-text-disabled: #6c757d;
 
-  --figma-btn-tertiary-bg-default: var(--buttons/tertiary/background-default, #ffffff);
-  --figma-btn-tertiary-bg-hover: var(--buttons/tertiary/background-hover, #f3f4f6);
-  --figma-btn-tertiary-bg-disabled: var(--buttons/tertiary/background-disabled, #d2d3d3);
-  --figma-btn-tertiary-text-default: var(--buttons/tertiary/text-default, #144633);
-  --figma-btn-tertiary-text-disabled: var(--buttons/tertiary/text-disabled, #6c757d);
+  --figma-btn-tertiary-bg-default: #ffffff;
+  --figma-btn-tertiary-bg-hover: #f3f4f6;
+  --figma-btn-tertiary-bg-disabled: #d2d3d3;
+  --figma-btn-tertiary-text-default: #144633;
+  --figma-btn-tertiary-text-disabled: #6c757d;
 }
 
 .figma-button {
