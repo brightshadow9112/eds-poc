@@ -932,5 +932,45 @@
         "multi": false
       }
     ]
+  },
+  {
+    "id": "rexulti-button",
+    "fields": [
+      {
+        "component": "text",
+        "name": "buttonText",
+        "label": "Button Text",
+        "valueType": "string",
+        "value": "Button Title"
+      },
+      {
+        "component": "select",
+        "name": "buttonStyle",
+        "label": "Button Style",
+        "value": "primary",
+        "options": [
+          {
+            "name": "Primary",
+            "value": "primary"
+          },
+          {
+            "name": "Secondary",
+            "value": "secondary"
+          },
+          {
+            "name": "Tertiary",
+            "value": "tertiary"
+          },
+          {
+            "name": "Icon Only",
+            "value": "icon-only"
+          },
+          {
+            "name": "Disabled",
+            "value": "disabled"
+          }
+        ]
+      }
+    ]
   }
 ]
