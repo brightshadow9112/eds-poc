@@ -11,6 +11,64 @@ function setupZoomToggle() {
     }
   });
 }
+
+function setupNavBrandImageReload(navBrand) {
+  if (!navBrand) return;
+
+  const brandImage = navBrand.querySelector('img');
+  if (!brandImage) return;
+
+  brandImage.style.cursor = 'pointer';
+  brandImage.addEventListener('click', () => {
+    window.location.reload();
+  });
+}
+
+function setupBackToTopScroll({ selector = 'a[href="#top"]', viewportThreshold = 1 } = {}) {
+  const backToTopLink = document.querySelector(selector);
+  if (!backToTopLink) return;
+
+  const thresholdRatio = Math.max(0, Number(viewportThreshold) || 0);
+  let thresholdPixels = window.innerHeight * thresholdRatio;
+  let isVisible = null;
+  let isTicking = false;
+
+  const setVisibility = () => {
+    const shouldShow = window.scrollY >= thresholdPixels;
+    if (shouldShow === isVisible) return;
+
+    backToTopLink.style.display = shouldShow ? 'block' : 'none';
+    isVisible = shouldShow;
+  };
+
+  const onScroll = () => {
+    if (isTicking) return;
+    isTicking = true;
+
+    window.requestAnimationFrame(() => {
+      setVisibility();
+      isTicking = false;
+    });
+  };
+
+  const onResize = () => {
+    thresholdPixels = window.innerHeight * thresholdRatio;
+    setVisibility();
+  };
+
+  setVisibility();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onResize);
+
+  backToTopLink.addEventListener('click', (event) => {
+    event.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  });
+}
+
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
@@ -139,6 +197,8 @@ export default async function decorate(block) {
   });
 
   const navBrand = nav.querySelector('.nav-brand');
+  setupNavBrandImageReload(navBrand);
+
   const brandLink = navBrand.querySelector('.button');
   if (brandLink) {
     brandLink.className = '';
@@ -179,4 +239,9 @@ export default async function decorate(block) {
 
   // Setup zoom toggle for nav-brand text
   setupZoomToggle();
+
+  setupBackToTopScroll({
+    selector: 'a[href="#top"]',
+    viewportThreshold: 1,
+  });
 }

@@ -29,7 +29,8 @@
       "icon-button",
       "video",
       "videoplaylist",
-      "autoslider"
+      "autoslider",
+      "rexulti-button"
     ]
   },
   {
@@ -111,6 +112,12 @@
     "id": "videoplaylist",
     "components": [
       "videoslide"
+    ]
+  },
+  {
+    "id": "rexulti-button",
+    "components": [
+      "rexulti-button-state"
     ]
   }
 ]

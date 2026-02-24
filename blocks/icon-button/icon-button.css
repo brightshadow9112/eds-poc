@@ -3,18 +3,18 @@
     align-items: center;
     justify-content: center;
     height: 56px;
-    padding: 13px 16px 13px 24px;
+    padding: 13px 10px 13px 15px;
     gap: 4px;
     border-radius: 8px;
     max-width: 355px;
     cursor: pointer;
     background-color: var(--bs-color-yellow);
-    border: 0.8px solid var(--bs-color-yellow);
+    border: 1 solid var(--bs-color-yellow);
     color: var(--bs-color-gray);
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
         border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    font-size: 20px;
-    line-height: 18px;
+    font-size: 18px;
+    line-height: normal;
 }
 
 .icon-button .icon-button-icon {
@@ -57,4 +57,12 @@
 
 .icon-button-link.bg-red:hover .icon-button-icon {
     color: var(--bs-color-yellow);
+}
+
+@media (width >= 48em) {
+    .icon-button .icon-button-link {
+        font-size: 20px;
+        line-height: 18px;
+        padding: 13px 16px 13px 24px;
+    }
 }

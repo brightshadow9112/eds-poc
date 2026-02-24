@@ -1,5 +1,6 @@
 /* stylelint-disable */
 .share-your-story {
+    padding-top: 24px;
     position: relative;
     overflow: hidden;
     display: flex;

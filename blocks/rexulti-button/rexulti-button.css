@@ -1,0 +1,132 @@
+:root {
+  --figma-btn-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --figma-btn-font-size: 16px;
+  --figma-btn-font-weight: 700;
+  --figma-btn-line-height: 18px;
+
+  --figma-btn-radius: 200px;
+  --figma-btn-min-width: 220px;
+  --figma-btn-padding-inline: 24px;
+  --figma-btn-padding-block: 18px;
+  --figma-btn-gap: 8px;
+
+  --figma-btn-icon-only-size: 38px;
+  --figma-btn-icon-only-padding-inline: 12px;
+  --figma-btn-icon-only-padding-block: 6px;
+
+  --figma-btn-primary-bg-default: var(--buttons/primary/background-default, #ffb718);
+  --figma-btn-primary-bg-hover: var(--buttons/primary/background-hover, #d5a106);
+  --figma-btn-primary-bg-disabled: var(--buttons/primary/background-disabled, #d2d3d3);
+  --figma-btn-primary-text-default: var(--buttons/primary/text-default, #144633);
+  --figma-btn-primary-text-disabled: var(--buttons/primary/text-disabled, #6c757d);
+
+  --figma-btn-secondary-bg-default: var(--buttons/secondary/background-default, #436b5c);
+  --figma-btn-secondary-bg-hover: var(--buttons/secondary/background-hover, #144633);
+  --figma-btn-secondary-bg-disabled: var(--buttons/secondary/background-disabled, #d2d3d3);
+  --figma-btn-secondary-text-default: var(--buttons/secondary/text-default, #ffffff);
+  --figma-btn-secondary-text-disabled: var(--buttons/secondary/text-disabled, #6c757d);
+
+  --figma-btn-tertiary-bg-default: var(--buttons/tertiary/background-default, #ffffff);
+  --figma-btn-tertiary-bg-hover: var(--buttons/tertiary/background-hover, #f3f4f6);
+  --figma-btn-tertiary-bg-disabled: var(--buttons/tertiary/background-disabled, #d2d3d3);
+  --figma-btn-tertiary-text-default: var(--buttons/tertiary/text-default, #144633);
+  --figma-btn-tertiary-text-disabled: var(--buttons/tertiary/text-disabled, #6c757d);
+}
+
+.figma-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--figma-btn-gap);
+  min-width: var(--figma-btn-min-width);
+  padding-block: var(--figma-btn-padding-block);
+  padding-inline: var(--figma-btn-padding-inline);
+  border: 0;
+  border-radius: var(--figma-btn-radius);
+  font-family: var(--figma-btn-font-family);
+  font-size: var(--figma-btn-font-size);
+  font-weight: var(--figma-btn-font-weight);
+  line-height: var(--figma-btn-line-height);
+  text-align: center;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 120ms ease, color 120ms ease;
+}
+
+.figma-button[disabled],
+.figma-button[aria-disabled="true"],
+.figma-button[data-state="disabled"] {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.figma-button--icon-only {
+  min-width: 0;
+  width: var(--figma-btn-icon-only-size);
+  height: var(--figma-btn-icon-only-size);
+  padding-block: var(--figma-btn-icon-only-padding-block);
+  padding-inline: var(--figma-btn-icon-only-padding-inline);
+  gap: 0;
+  overflow: clip;
+}
+
+.figma-button--primary,
+.figma-button[data-variant="primary"] {
+  background-color: var(--figma-btn-primary-bg-default);
+  color: var(--figma-btn-primary-text-default);
+}
+
+.figma-button--primary:hover:not([disabled]):not([aria-disabled="true"]):not([data-state="disabled"]),
+.figma-button[data-variant="primary"][data-state="hover"] {
+  background-color: var(--figma-btn-primary-bg-hover);
+  color: var(--figma-btn-primary-text-default);
+}
+
+.figma-button--primary:disabled,
+.figma-button--primary[aria-disabled="true"],
+.figma-button--primary[data-state="disabled"],
+.figma-button[data-variant="primary"][data-state="disabled"] {
+  background-color: var(--figma-btn-primary-bg-disabled);
+  color: var(--figma-btn-primary-text-disabled);
+}
+
+.figma-button--secondary,
+.figma-button[data-variant="secondary"] {
+  background-color: var(--figma-btn-secondary-bg-default);
+  color: var(--figma-btn-secondary-text-default);
+}
+
+.figma-button--secondary:hover:not([disabled]):not([aria-disabled="true"]):not([data-state="disabled"]),
+.figma-button[data-variant="secondary"][data-state="hover"] {
+  background-color: var(--figma-btn-secondary-bg-hover);
+  color: var(--figma-btn-secondary-text-default);
+}
+
+.figma-button--secondary:disabled,
+.figma-button--secondary[aria-disabled="true"],
+.figma-button--secondary[data-state="disabled"],
+.figma-button[data-variant="secondary"][data-state="disabled"] {
+  background-color: var(--figma-btn-secondary-bg-disabled);
+  color: var(--figma-btn-secondary-text-disabled);
+}
+
+.figma-button--tertiary,
+.figma-button[data-variant="tertiary"] {
+  background-color: var(--figma-btn-tertiary-bg-default);
+  color: var(--figma-btn-tertiary-text-default);
+}
+
+.figma-button--tertiary:hover:not([disabled]):not([aria-disabled="true"]):not([data-state="disabled"]),
+.figma-button[data-variant="tertiary"][data-state="hover"] {
+  background-color: var(--figma-btn-tertiary-bg-hover);
+  color: var(--figma-btn-tertiary-text-default);
+}
+
+.figma-button--tertiary:disabled,
+.figma-button--tertiary[aria-disabled="true"],
+.figma-button--tertiary[data-state="disabled"],
+.figma-button[data-variant="tertiary"][data-state="disabled"] {
+  background-color: var(--figma-btn-tertiary-bg-disabled);
+  color: var(--figma-btn-tertiary-text-disabled);
+}
