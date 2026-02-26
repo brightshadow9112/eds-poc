@@ -30,7 +30,8 @@
       "video",
       "videoplaylist",
       "autoslider",
-      "rexulti-button"
+      "rexulti-button",
+      "pillarcard"
     ]
   },
   {
@@ -112,6 +113,12 @@
     "id": "videoplaylist",
     "components": [
       "videoslide"
+    ]
+  },
+  {
+    "id": "pillarcard",
+    "components": [
+      "pillar-card-item"
     ]
   }
 ]

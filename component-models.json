@@ -972,5 +972,80 @@
         ]
       }
     ]
+  },
+  {
+    "id": "pillar-card-item",
+    "fields": [
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "variant",
+        "label": "Card Variant",
+        "value": "add-on",
+        "options": [
+          {
+            "name": "Add-on",
+            "value": "add-on"
+          },
+          {
+            "name": "Boost",
+            "value": "boost"
+          },
+          {
+            "name": "Progress",
+            "value": "progress"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "kicker",
+        "label": "Kicker Text",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "headline",
+        "label": "Headline Text",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "subhead",
+        "label": "Subhead Text",
+        "value": ""
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "graphicsImage",
+        "label": "Graphics Image",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "heroImage",
+        "label": "Hero Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "heroImageAlt",
+        "label": "Hero Image Alt",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "caption",
+        "label": "Caption Text",
+        "value": ""
+      }
+    ]
   }
 ]

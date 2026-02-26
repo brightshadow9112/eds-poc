@@ -89,7 +89,8 @@
         "video",
         "videoplaylist",
         "autoslider",
-        "rexulti-button"
+        "rexulti-button",
+        "pillarcard"
       ]
     }
   ]
