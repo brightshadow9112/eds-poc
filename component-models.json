@@ -679,6 +679,121 @@
     ]
   },
   {
+    "id": "pillarcard",
+    "fields": [
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "variant",
+        "label": "Card Variant",
+        "value": "add-on",
+        "options": [
+          {
+            "name": "Add-on",
+            "value": "add-on"
+          },
+          {
+            "name": "Boost",
+            "value": "boost"
+          },
+          {
+            "name": "Progress",
+            "value": "progress"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "kicker",
+        "label": "Kicker Text",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "headline",
+        "label": "Headline Text",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "subhead",
+        "label": "Subhead Text",
+        "value": ""
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "graphicsImage",
+        "label": "Graphics Image",
+        "multi": false
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "heroImage",
+        "label": "Hero Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "heroImageAlt",
+        "label": "Hero Image Alt",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "caption",
+        "label": "Caption Text",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "rexulti-button",
+    "fields": [
+      {
+        "component": "text",
+        "name": "buttonText",
+        "label": "Button Text",
+        "valueType": "string",
+        "value": "Button Title"
+      },
+      {
+        "component": "select",
+        "name": "buttonStyle",
+        "label": "Button Style",
+        "value": "primary",
+        "options": [
+          {
+            "name": "Primary",
+            "value": "primary"
+          },
+          {
+            "name": "Secondary",
+            "value": "secondary"
+          },
+          {
+            "name": "Tertiary",
+            "value": "tertiary"
+          },
+          {
+            "name": "Icon Only",
+            "value": "icon-only"
+          },
+          {
+            "name": "Disabled",
+            "value": "disabled"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "timeline-entry",
     "fields": [
       {
@@ -930,121 +1045,6 @@
         "name": "image",
         "label": "Image",
         "multi": false
-      }
-    ]
-  },
-  {
-    "id": "rexulti-button",
-    "fields": [
-      {
-        "component": "text",
-        "name": "buttonText",
-        "label": "Button Text",
-        "valueType": "string",
-        "value": "Button Title"
-      },
-      {
-        "component": "select",
-        "name": "buttonStyle",
-        "label": "Button Style",
-        "value": "primary",
-        "options": [
-          {
-            "name": "Primary",
-            "value": "primary"
-          },
-          {
-            "name": "Secondary",
-            "value": "secondary"
-          },
-          {
-            "name": "Tertiary",
-            "value": "tertiary"
-          },
-          {
-            "name": "Icon Only",
-            "value": "icon-only"
-          },
-          {
-            "name": "Disabled",
-            "value": "disabled"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "pillar-card-item",
-    "fields": [
-      {
-        "component": "select",
-        "valueType": "string",
-        "name": "variant",
-        "label": "Card Variant",
-        "value": "add-on",
-        "options": [
-          {
-            "name": "Add-on",
-            "value": "add-on"
-          },
-          {
-            "name": "Boost",
-            "value": "boost"
-          },
-          {
-            "name": "Progress",
-            "value": "progress"
-          }
-        ]
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "kicker",
-        "label": "Kicker Text",
-        "value": ""
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "headline",
-        "label": "Headline Text",
-        "value": ""
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "subhead",
-        "label": "Subhead Text",
-        "value": ""
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "graphicsImage",
-        "label": "Graphics Image",
-        "multi": false
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "heroImage",
-        "label": "Hero Image",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "heroImageAlt",
-        "label": "Hero Image Alt",
-        "value": ""
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "caption",
-        "label": "Caption Text",
-        "value": ""
       }
     ]
   }

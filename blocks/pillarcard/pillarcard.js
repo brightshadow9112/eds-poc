@@ -33,17 +33,62 @@ function resolveVariant(rawVariant) {
   return ALLOWED_VARIANTS.has(normalized) ? normalized : 'add-on';
 }
 
-function buildCard(row, mobileView) {
-  const cells = [...row.children];
+function getFieldValue(block, index) {
+  const row = block.children[index];
+  if (!row) return '';
 
-  const variant = resolveVariant(getCellText(cells[0]));
-  const kicker = getCellText(cells[1]);
-  const headline = getCellText(cells[2]);
-  const subhead = getCellText(cells[3]);
-  const graphicsImage = getImageFromCell(cells[4]);
-  const heroImage = getImageFromCell(cells[5]);
-  const heroImageAlt = getCellText(cells[6]);
-  const caption = getCellText(cells[7]);
+  const directCellText = [...row.children]
+    .map((cell) => getCellText(cell))
+    .find(Boolean);
+
+  return directCellText || getCellText(row);
+}
+
+function getFieldImage(block, index) {
+  const row = block.children[index];
+  if (!row) return { src: '', alt: '' };
+
+  if (row.children.length > 1) {
+    const preferredCell = [...row.children].find((cell) => getImageFromCell(cell).src);
+    return preferredCell ? getImageFromCell(preferredCell) : getImageFromCell(row);
+  }
+
+  return getImageFromCell(row);
+}
+
+function parseBlockFields(block) {
+  const variant = resolveVariant(getFieldValue(block, 0));
+  const kicker = getFieldValue(block, 1);
+  const headline = getFieldValue(block, 2);
+  const subhead = getFieldValue(block, 3);
+  const graphicsImage = getFieldImage(block, 4);
+  const heroImage = getFieldImage(block, 5);
+  const heroImageAlt = getFieldValue(block, 6);
+  const caption = getFieldValue(block, 7);
+
+  return {
+    variant,
+    kicker,
+    headline,
+    subhead,
+    graphicsImage,
+    heroImage,
+    heroImageAlt,
+    caption,
+  };
+}
+
+function buildCard(fields, mobileView) {
+  const {
+    variant,
+    kicker,
+    headline,
+    subhead,
+    graphicsImage,
+    heroImage,
+    heroImageAlt,
+    caption,
+  } = fields;
 
   const article = document.createElement('article');
   article.className = `pillar-card pillar-card--${mobileView ? 'mobile' : 'desktop'} pillar-card--${variant}`;
@@ -99,12 +144,12 @@ function buildCard(row, mobileView) {
 }
 
 export default function decorate(block) {
-  const rows = [...block.querySelectorAll(':scope > div')];
   const mobileView = block.classList.contains('mobile') || block.classList.contains('pillar-cards--mobile');
+  const fields = parseBlockFields(block);
 
   block.classList.add('pillar-cards');
   block.classList.add(mobileView ? 'pillar-cards--mobile' : 'pillar-cards--desktop');
 
-  const cards = rows.map((row) => buildCard(row, mobileView));
-  block.replaceChildren(...cards);
+  const card = buildCard(fields, mobileView);
+  block.replaceChildren(card);
 }

@@ -114,11 +114,5 @@
     "components": [
       "videoslide"
     ]
-  },
-  {
-    "id": "pillarcard",
-    "components": [
-      "pillar-card-item"
-    ]
   }
 ]
