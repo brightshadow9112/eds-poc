@@ -39,15 +39,15 @@
 
 .icon-button-link.bg-red {
     background-color: var(--bs-color-red);
-    border: 0.8px solid var(--bs-color-red);;
+    border: 0.8px solid var(--bs-color-red);
     color: var(--bs-color-white);
 }
 
 .icon-button-link.bg-red:hover,
 .icon-button-link.bg-red:active {
-    color: var(--bs-color-red);;
-    border-color: var(--bs-color-red);;
-    background-color: var(--bs-color-white);;;
+    color: var(--bs-color-red);
+    border-color: var(--bs-color-red);
+    background-color: var(--bs-color-white);
     text-decoration: none;
 }
 

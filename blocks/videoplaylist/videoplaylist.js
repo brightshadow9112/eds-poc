@@ -242,8 +242,39 @@ function formatDuration(seconds) {
   return `${mins}:${secs.toString().padStart(2, '0')}`;
 }
 
-export default async function decorate(block) {
-  let $ = window.jQuery;
+function runWhenIdle(fn, timeout = 1500) {
+  if ('requestIdleCallback' in window) {
+    window.requestIdleCallback(fn, { timeout });
+    return;
+  }
+  setTimeout(fn, 0);
+}
+
+async function hydrateDurations(items, onDuration, concurrency = 2) {
+  const queue = items
+    .map((item, index) => ({ item, index }))
+    .filter(({ item }) => item?.provider === 'vimeo');
+
+  if (!queue.length) return;
+
+  let cursor = 0;
+  const worker = async () => {
+    while (cursor < queue.length) {
+      const current = queue[cursor++];
+      const duration = await getVideoDuration(current.item.src, current.item.provider);
+      if (typeof duration === 'number' && duration > 0) {
+        current.item.duration = duration;
+        onDuration(current.index, duration);
+      }
+    }
+  };
+
+  await Promise.all(
+    Array.from({ length: Math.min(concurrency, queue.length) }, () => worker()),
+  );
+}
+
+export default function decorate(block) {
 
   const originalRows = [...block.querySelectorAll(':scope > div')];
   const items = originalRows.map((row) => {
@@ -293,7 +324,6 @@ export default async function decorate(block) {
   let autoplayOnChange = false;
   let stopPromise = Promise.resolve();
   let slides = [];
-  let pendingAutoplayIndex = null;
 
   const isReady = (n) => !!(n?.slick?.setPosition && !n.slick.unslicked);
   const setPos = () => {
@@ -305,25 +335,23 @@ export default async function decorate(block) {
   function updateDurationDisplay(index, duration) {
     const slide = slides[index];
     const caption = slide?.querySelector('.vp-caption');
-    if (caption) {
-      let durationSpan = caption.querySelector('.vp-duration');
-      if (!durationSpan) {
-        durationSpan = el('span', { class: 'vp-duration' });
-        caption.append(' ', durationSpan);
-      }
-      durationSpan.textContent = `${formatDuration(duration)}`;
+    if (!caption) return;
+
+    let durationSpan = caption.querySelector('.vp-duration');
+    if (!durationSpan) {
+      durationSpan = el('span', { class: 'vp-duration' });
+      caption.append(' ', durationSpan);
     }
+    durationSpan.textContent = `${formatDuration(duration)}`;
 
     const navItem = sliderNav.querySelector(
       `.vp-navitem[data-index="${index}"]`,
     );
     if (navItem) {
-      const navTextWrapper =
-        navItem.querySelector('.vp-navitem-text-wrapper') || navItem;
-      let navDuration = navTextWrapper.querySelector('.vp-duration');
+      let navDuration = navItem.querySelector('.vp-duration');
       if (!navDuration) {
         navDuration = el('span', { class: 'vp-duration' });
-        navTextWrapper.append(' ', navDuration);
+        navItem.append(' ', navDuration);
       }
       navDuration.textContent = `${formatDuration(duration)}`;
     }
@@ -355,11 +383,12 @@ export default async function decorate(block) {
   function advanceIfPossible(fromIndex) {
     if (fromIndex !== active) return;
     autoplayOnChange = true;
-    if (active < filteredItems.length - 1)
-      $(sliderFor).slick('slickGoTo', active + 1);
+    const jq = window.jQuery;
+    if (!jq?.fn?.slick) return;
+    if (active < filteredItems.length - 1) jq(sliderFor).slick('slickGoTo', active + 1);
     else {
       resumeTime.set(0, 0);
-      $(sliderFor).slick('slickGoTo', 0);
+      jq(sliderFor).slick('slickGoTo', 0);
     }
   }
 
@@ -638,14 +667,11 @@ export default async function decorate(block) {
 
     const playThis = async () => {
       intent();
-      if (!window.jQuery?.fn?.slick || !isReady(sliderFor)) {
-        autoplayOnChange = true;
-        pendingAutoplayIndex = i;
-        return;
-      }
       if (active !== i) {
+        const jq = window.jQuery;
+        if (!jq?.fn?.slick) return;
         autoplayOnChange = true;
-        $(sliderFor).slick('slickGoTo', i);
+        jq(sliderFor).slick('slickGoTo', i);
         return;
       }
       await load(i, { autoPlay: true });
@@ -668,117 +694,104 @@ export default async function decorate(block) {
     return slide;
   });
 
-  filteredItems.forEach((item, index) => {
-    getVideoDuration(item.src, item.provider)
-      .then((duration) => {
-        if (typeof duration === 'number' && duration > 0) {
-          filteredItems[index].duration = duration;
-          updateDurationDisplay(index, duration);
-        }
-      })
-      .catch(() => {});
-  });
-
-  const initSlick = async () => {
-    try {
-      await ensureSlickAndJquery();
-      $ = window.jQuery;
-
-      const visibleNow = await waitForNonZeroWidth(sliderFor, 4000);
-
-      $(sliderNav).on('mousedown touchstart keydown', '.slick-slide', (e) => {
-        if (e.type === 'keydown' && !(e.key === 'Enter' || e.key === ' ')) return;
-        const idx = Number($(e.currentTarget).attr('data-slick-index')) || 0;
-        autoplayOnChange = true;
-        preconnectForProvider(filteredItems[idx]?.provider);
-      });
-
-      $(sliderFor).on('init', () => {
-        observeVisibilityRefresh([sliderFor, sliderNav]);
-        setPos();
-        [100, 300].forEach((ms) => setTimeout(setPos, ms));
-      });
-
-      $(sliderFor).on('beforeChange', (e, slick, cur, next) => {
-        preconnectForProvider(filteredItems?.[next]?.provider);
-        stopPromise = stop(cur);
-      });
-
-      $(sliderFor).on('afterChange', (e, slick, cur) => {
-        active = cur;
-        Promise.resolve(stopPromise).finally(() => {
-          if (autoplayOnChange) load(cur, { autoPlay: true });
-          autoplayOnChange = false;
-          requestAnimationFrame(setPos);
-        });
-      });
-
-  shell.addEventListener('click', (e) => {
-    const prev = e.target?.closest?.('.vp-prev');
-    const next = e.target?.closest?.('.vp-next');
-    if (!prev && !next) return;
-
-    autoplayOnChange = true;
-    const target = prev
-      ? Math.max(0, active - 1)
-      : Math.min(filteredItems.length - 1, active + 1);
-    preconnectForProvider(filteredItems[target]?.provider);
-  });
-
-      $(sliderFor).slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: true,
-        fade: true,
-        asNavFor: sliderNav,
-        infinite: false,
-        speed: 280,
-        swipe: false,
-        draggable: false,
-        touchMove: false,
-        adaptiveHeight: false,
-        prevArrow:
-          '<button class="vp-nav vp-prev" type="button" aria-label="Previous video"><span class="vp-nav-icon">‹</span></button>',
-        nextArrow:
-          '<button class="vp-nav vp-next" type="button" aria-label="Next video"><span class="vp-nav-icon">›</span></button>',
-      });
-
-      $(sliderNav).slick({
-        slidesToShow: Math.min(3, filteredItems.length),
-        slidesToScroll: 1,
-        asNavFor: sliderFor,
-        dots: true,
-        centerMode: true,
-        focusOnSelect: true,
-        arrows: false,
-        infinite: false,
-        swipe: false,
-        draggable: false,
-        touchMove: false,
-        adaptiveHeight: false,
-      });
-
-      if (!visibleNow) [500, 1200].forEach((ms) => setTimeout(setPos, ms));
-
-      // Load first video player on page load in paused state
-      setTimeout(() => {
-        load(0, { autoPlay: false });
-      }, 300);
-
-      if (typeof pendingAutoplayIndex === 'number') {
-        const target = pendingAutoplayIndex;
-        pendingAutoplayIndex = null;
-        autoplayOnChange = true;
-        if (target !== active) {
-          $(sliderFor).slick('slickGoTo', target);
-        } else {
-          load(target, { autoPlay: true });
-        }
-      }
-    } catch (error) {
-      console.error('Video playlist initialization failed:', error);
-    }
+  const startDurationHydration = () => {
+    runWhenIdle(() => {
+      hydrateDurations(filteredItems, updateDurationDisplay);
+    });
   };
 
-  initSlick();
+  if (document.readyState === 'complete') startDurationHydration();
+  else
+    window.addEventListener('load', startDurationHydration, {
+      once: true,
+    });
+
+  const initSlick = async () => {
+    await ensureSlickAndJquery();
+    const $ = window.jQuery;
+
+    const visibleNow = await waitForNonZeroWidth(sliderFor, 4000);
+
+    $(sliderNav).on('mousedown touchstart keydown', '.slick-slide', (e) => {
+      if (e.type === 'keydown' && !(e.key === 'Enter' || e.key === ' ')) return;
+      const idx = Number($(e.currentTarget).attr('data-slick-index')) || 0;
+      autoplayOnChange = true;
+      preconnectForProvider(filteredItems[idx]?.provider);
+    });
+
+    $(sliderFor).on('init', () => {
+      observeVisibilityRefresh([sliderFor, sliderNav]);
+      setPos();
+      [100, 300].forEach((ms) => setTimeout(setPos, ms));
+    });
+
+    $(sliderFor).on('beforeChange', (e, slick, cur, next) => {
+      preconnectForProvider(filteredItems?.[next]?.provider);
+      stopPromise = stop(cur);
+    });
+
+    $(sliderFor).on('afterChange', (e, slick, cur) => {
+      active = cur;
+      Promise.resolve(stopPromise).finally(() => {
+        if (autoplayOnChange) load(cur, { autoPlay: true });
+        autoplayOnChange = false;
+        requestAnimationFrame(setPos);
+      });
+    });
+
+    shell.addEventListener('click', (e) => {
+      const prev = e.target?.closest?.('.vp-prev');
+      const next = e.target?.closest?.('.vp-next');
+      if (!prev && !next) return;
+
+      autoplayOnChange = true;
+      const target = prev
+        ? Math.max(0, active - 1)
+        : Math.min(filteredItems.length - 1, active + 1);
+      preconnectForProvider(filteredItems[target]?.provider);
+    });
+
+    $(sliderFor).slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: true,
+      fade: true,
+      asNavFor: sliderNav,
+      infinite: false,
+      speed: 280,
+      swipe: false,
+      draggable: false,
+      touchMove: false,
+      adaptiveHeight: false,
+      prevArrow:
+        '<button class="vp-nav vp-prev" type="button" aria-label="Previous video"><span class="vp-nav-icon">‹</span></button>',
+      nextArrow:
+        '<button class="vp-nav vp-next" type="button" aria-label="Next video"><span class="vp-nav-icon">›</span></button>',
+    });
+
+    $(sliderNav).slick({
+      slidesToShow: Math.min(3, filteredItems.length),
+      slidesToScroll: 1,
+      asNavFor: sliderFor,
+      dots: true,
+      centerMode: true,
+      focusOnSelect: true,
+      arrows: false,
+      infinite: false,
+      swipe: false,
+      draggable: false,
+      touchMove: false,
+      adaptiveHeight: false,
+    });
+
+    if (!visibleNow) [500, 1200].forEach((ms) => setTimeout(setPos, ms));
+
+    setTimeout(() => {
+      load(0, { autoPlay: false });
+    }, 300);
+  };
+
+  runWhenIdle(() => {
+    initSlick().catch(() => {});
+  }, 1200);
 }
