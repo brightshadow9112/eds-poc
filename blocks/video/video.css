@@ -104,13 +104,22 @@
     padding: 0;
 }
 
+.video-container h1 {
+    display: inline;
+}
+
 @media (width>= 48em) {
     .video {
         max-width: 900px;
     }
 
     .section.video-container {
-    padding: 25px 10px 18px;
+        padding: 25px 10px 18px;
+    }
 }
 
+@media (width >= 62em) {
+    .video-container h1 {
+        display: block;
+    }
 }
