@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;7000&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
     --bs-color-black: #000;
@@ -9,8 +9,8 @@
     --bs-color-yellow-hover-bg: #ffc23b;
     --bs-color-yellow-hover-border: #ffbe2f;
     --bs-color-gray: #253958;
-    --bs-body-color: #112D32;
-    --bs-body-font-family: "Assistant", "Arial", sans-serif;
+    --bs-body-color: #112d32;
+    --bs-body-font-family: 'Assistant', 'Arial', sans-serif;
     --bs-body-font-size: 1rem;
     --bs-body-font-weight: 400;
     --bs-body-line-height: 1.5;
@@ -33,7 +33,6 @@ body {
     line-height: var(--bs-body-line-height);
     color: var(--bs-body-color);
     background: #ebe9e1;
-  
 }
 
 /* Start: Button grid block styles  */
@@ -89,8 +88,7 @@ main {
     height: 32px;
 }
 
-
-@media (width < 48em) { 
+@media (width < 48em) {
     .section.button-grid .icon-button-link {
         max-width: 369px;
         width: 100%;
@@ -124,7 +122,7 @@ main {
 }
 
 @media (width >= 62em) {
-    .section.button-grid  {
+    .section.button-grid {
         gap: 18px;
     }
 
@@ -155,7 +153,12 @@ main {
 
 /* global styles */
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     color: var(--bs-color-gray);
     font-size: var(--font-weight-bold);
     margin: 0;
@@ -173,7 +176,6 @@ h2 {
     margin-bottom: 10px;
 }
 
-
 h4 {
     font-size: var(--heading-font-size-h4);
     color: var(--bs-color-red);
@@ -188,17 +190,16 @@ p {
     line-height: normal;
     font-weight: 400;
     margin: 0 0 16px;
-    color: #4f4a41
+    color: #4f4a41;
 }
 
-.columns-container h2 + p,
-.call-to-action p {
+.call-to-action p,
+.columns-container h2 + p {
     font-size: 1rem;
 }
 
-
 /* back to top */
-a[href="#top"] {
+a[href='#top'] {
     display: none;
     position: fixed;
     bottom: 20px;
@@ -210,15 +211,17 @@ a[href="#top"] {
     color: transparent;
 }
 
-a[href="#top"]::before {
-    content: "";
-    background: url("/dam/agitationlz/live-content/arrow-e-white.svg") no-repeat center center / contain;
+a[href='#top']::before {
+    content: '';
+    background: url('../icons/arrow-e-white.svg') no-repeat
+        center center / contain;
     width: 11px;
     height: 6px;
     position: absolute;
     display: block;
     right: calc(50% - 5px);
     z-index: 99999;
+    top:calc(50% - 3px);
 }
 
 @media screen and (width >= 48em) {
@@ -227,12 +230,12 @@ a[href="#top"]::before {
         line-height: 1.12;
     }
 
-    .columns-container h2 + p,
-    .call-to-action p {
+    p {
         font-size: 18px;
     }
 
-    p {
+    .call-to-action p,
+    .columns-container h2 + p {
         font-size: 18px;
     }
 }
@@ -245,7 +248,7 @@ a[href="#top"]::before {
     display: flex;
     justify-content: space-between;
     width: calc(100% - 20px);
-    flex-direction: column
+    flex-direction: column;
 }
 
 .call-to-action .default-content-wrapper {
@@ -280,19 +283,19 @@ a[href="#top"]::before {
         max-width: 171px;
     }
 
-    a[href="#top"] {
+    a[href='#top'] {
         display: none !important;
     }
 }
 
 /* column view section */
-.section.column-view .columns-wrapper img{
+.section.column-view .columns-wrapper img {
     width: 100%;
     height: auto;
     max-width: 560px;
 }
 
-.section.column-view .columns-wrapper p:has(img:not([alt*="mobile-only"])) {
+.section.column-view .columns-wrapper p:has(img:not([alt*='mobile-only'])) {
     display: none;
 }
 
@@ -301,17 +304,15 @@ a[href="#top"]::before {
 }
 
 @media screen and (width >= 48em) {
-    .section.column-view .columns-wrapper p:has(img:not([alt*="mobile-only"])) {
+    .section.column-view .columns-wrapper p:has(img:not([alt*='mobile-only'])) {
         display: block;
     }
 
-    .section.column-view .columns-wrapper p:has(img[alt*="mobile-only"]){
+    .section.column-view .columns-wrapper p:has(img[alt*='mobile-only']) {
         display: none;
     }
 
     .section.column-view.columns-container:not(.uniform-spacing) {
         margin: 62px 0 14px;
     }
-
 }
-
