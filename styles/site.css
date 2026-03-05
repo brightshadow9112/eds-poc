@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;7000&display=swap");
 
 :root {
     --bs-color-black: #000;
@@ -31,6 +32,7 @@ body {
     font-weight: var(--bs-body-font-weight);
     line-height: var(--bs-body-line-height);
     color: var(--bs-body-color);
+    background: #ebe9e1;
   
 }
 
@@ -41,14 +43,15 @@ main {
 
 .section.button-grid {
     position: sticky;
-    padding: 0 0.625rem;
+    padding: 10px 0 8px;
     margin: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap:.25rem;
-    z-index: 2;
+    gap: 4px;
+    z-index: 4;
+    top: 0;
 }
 
 .button-grid .icon-button-wrapper {
@@ -60,78 +63,97 @@ main {
 .section.button-grid .icon-button-link {
     height: 48px;
     max-width: 369px;
-    padding: 0.5625rem 2.25rem;
-    font-size: 1.25rem;
-    line-height: 1.125rem;
+    padding: 9px 36px;
+    font-size: 20px;
+    line-height: 18px;
     transition: 0.4s;
+    border: 2px solid var(--bs-color-red);
+    gap: 0;
 }
 
 .section.button-grid .icon-button-text {
-    font-size: 1.375rem;
+    font-size: 20px;
     font-weight: 700;
-    line-height: 2.0625rem;
+    line-height: 30px;
+    gap: 0;
 }
 
 .section.button-grid .icon-button-icon {
     width: 35px;
     height: 35px;
-    margin: 0 0 0 0.625rem;
+    margin: 0 0 0 10px;
 }
+
+.section.button-grid .icon-button-icon:not(:first-child) {
+    width: 32px;
+    height: 32px;
+}
+
 
 @media (width < 48em) { 
     .section.button-grid .icon-button-link {
-        width: 369px;
+        max-width: 369px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .button-grid .icon-button-wrapper {
+        width: calc(100% - 20px);
     }
 }
 
 @media (width >= 48em) {
     .section.button-grid {
         top: var(--nav-height);
-        padding-top: 1.5rem;
-        padding-bottom: 1.5rem;
         flex-direction: row;
-        gap: 0.625rem;
+        gap: 10px;
         padding: 24px 0;
+        z-index: 2;
     }
 
     .section.button-grid .icon-button-link {
-        font-size: 1rem;
-        padding: 0.375rem 0;
+        font-size: 16px;
+        padding: 6px 0;
         width: 179px;
     }
 
     .section.button-grid .icon-button-text {
-        font-size: 1.125rem;
-        line-height: 1.6875rem;
+        font-size: 16px;
+        line-height: 24px;
     }
 }
 
 @media (width >= 62em) {
     .section.button-grid  {
-        gap: 1.125rem;
+        gap: 18px;
     }
 
     .section.button-grid .icon-button-link {
-        padding: 0.5625rem 0;
-        font-size: 1.125rem;
+        padding: 9px 0;
         width: 207px;
+    }
+
+    .section.button-grid .icon-button-text {
+        font-size: 18px;
+        line-height: 27px;
     }
 }
 
 @media (width>= 75em) {
     .section.button-grid .icon-button-link {
-        font-size: 1.375rem;
         height: 56px;
         width: 272px;
+    }
+
+    .section.button-grid .icon-button-text {
+        font-size: 22px;
+        line-height: 33px;
     }
 }
 
 /* END: Button grid block styles  */
 
 /* global styles */
-body {
-    background: #ebe9e1;
-}
 
 h1, h2, h3, h4, h5, h6 {
     color: var(--bs-color-gray);
@@ -148,7 +170,9 @@ h1 {
 h2 {
     font-size: var(--heading-font-size-h2);
     line-height: 1.22;
+    margin-bottom: 10px;
 }
+
 
 h4 {
     font-size: var(--heading-font-size-h4);
@@ -160,24 +184,64 @@ h5 {
 }
 
 p {
-    font-size: var(--body-font-size-s);
+    font-size: 1rem;
     line-height: normal;
     font-weight: 400;
     margin: 0 0 16px;
     color: #4f4a41
 }
 
-@media screen and (min-width: 48em) {
+.columns-container h2 + p,
+.call-to-action p {
+    font-size: 1rem;
+}
+
+
+/* back to top */
+a[href="#top"] {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    border-radius: 50%;
+    background: #253958;
+    width: 50px;
+    height: 50px;
+    color: transparent;
+}
+
+a[href="#top"]::before {
+    content: "";
+    background: url("/dam/agitationlz/live-content/arrow-e-white.svg") no-repeat center center / contain;
+    width: 11px;
+    height: 6px;
+    position: absolute;
+    display: block;
+    right: calc(50% - 5px);
+    z-index: 99999;
+}
+
+@media screen and (width >= 48em) {
     h1 {
         /* font-size: 48px; */
         line-height: 1.12;
     }
+
+    .columns-container h2 + p,
+    .call-to-action p {
+        font-size: 18px;
+    }
+
+    p {
+        font-size: 18px;
+    }
 }
+
 /* call-to-action */
 .call-to-action {
     max-width: var(--container-max-width);
     margin: 0 auto 16px;
-    padding: 10px 32px 4px;
+    padding: 10px 18px 15px 16px;
     display: flex;
     justify-content: space-between;
     width: calc(100% - 20px);
@@ -195,11 +259,16 @@ p {
     margin: 0;
 }
 
-@media screen and (min-width: 48em) {
+.call-to-action .default-content-wrapper p {
+    margin-bottom: 0;
+}
+
+@media screen and (width >= 48em) {
     .call-to-action {
         flex-direction: row;
         width: calc(100% - 32px);
         align-items: center;
+        padding: 10px 32px 4px;
     }
 
     .call-to-action .default-content-wrapper {
@@ -210,20 +279,39 @@ p {
     .call-to-action .icon-button-wrapper {
         max-width: 171px;
     }
+
+    a[href="#top"] {
+        display: none !important;
+    }
 }
 
 /* column view section */
-.section.column-view .columns-wrapper img:not([alt*="mobile-only"]) {
+.section.column-view .columns-wrapper img{
+    width: 100%;
+    height: auto;
+    max-width: 560px;
+}
+
+.section.column-view .columns-wrapper p:has(img:not([alt*="mobile-only"])) {
     display: none;
 }
 
-@media screen and (min-width: 48em) {
+.section.column-view.columns-container:not(.uniform-spacing) {
+    margin: 32px 0 14px;
+}
 
-    .section.column-view .columns-wrapper img:not([alt*="mobile-only"]) {
+@media screen and (width >= 48em) {
+    .section.column-view .columns-wrapper p:has(img:not([alt*="mobile-only"])) {
         display: block;
     }
 
-    .section.column-view .columns-wrapper img[alt*="mobile-only"]{
+    .section.column-view .columns-wrapper p:has(img[alt*="mobile-only"]){
         display: none;
     }
+
+    .section.column-view.columns-container:not(.uniform-spacing) {
+        margin: 62px 0 14px;
+    }
+
 }
+
