@@ -1,4 +1,3 @@
-
 /* stylelint-disable */
 .vp-slider .slick-list {
     overflow: hidden;
@@ -76,13 +75,25 @@
 .videoplaylist .vp-slider-nav .slick-track .vp-navitem .vp-video-number {font-size: 12px; font-weight: 700; color: #253958; line-height: normal; }
 .videoplaylist .vp-slider-nav .slick-track .vp-navitem .vp-navitem-title {font-size: 18px; font-weight: 700; color: #253958; line-height: normal;}
 .videoplaylist .vp-slider-nav .slick-track .vp-navitem .vp-duration {font-size: 15px; font-weight: 400; color: #567479; line-height: 22.5px;}
-.videoplaylist .vp-slider-nav .slick-track .vp-navitem-thumb {width: 100%; height: auto; margin-right: 17px; max-width: 158px; aspect-ratio: 16 / 9;}
-.videoplaylist .slick-dots {display: none !important;}
+.videoplaylist .vp-slider-nav .slick-track .vp-navitem-thumb {
+    width: 100%;
+    height: auto;
+    margin-right: 17px;
+    max-width: 158px;
+    aspect-ratio: auto 2840 / 1588;
+}
+
+.videoplaylist .slick-dots {
+    display: none !important;
+}
 
 .videoplaylist-container .icon-button .icon-button-link {
     max-width: 312px;
 }
 
+.videoplaylist-wrapper + .default-content-wrapper {
+    margin-top: 34px;
+}
 @media (width >= 48em) {
     .videoplaylist .vp-slider-for {
         width: 62.6%;
@@ -99,6 +110,14 @@
     .videoplaylist-container .icon-button .icon-button-link {
         padding-left: 15px;
         max-width: 366px;
+    }
+
+    .videoplaylist .vp-slider-nav .slick-track .vp-navitem-thumb {
+        max-width: 100px;
+    }
+
+    .videoplaylist-wrapper + .default-content-wrapper {
+        margin-bottom: 34px;
     }
 }
 

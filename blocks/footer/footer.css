@@ -25,7 +25,6 @@ footer .footer p:first-child img {
   max-width: 122px;
   margin-right: 65px;
   height: 100%;
-  margin-top: -33px;
 }
 
 footer .footer p:nth-child(2) img {
@@ -40,6 +39,8 @@ footer .footer p:nth-child(3) {
   line-height: 1.4;
   font-weight: var(--font-weight-regular);
   margin: 36px 0 8px;
+  width: calc(100% - 32px);
+  padding: 0 10px;
 }
 
 footer .footer ul {
@@ -55,6 +56,7 @@ footer .footer ul {
   flex-wrap: wrap;
   margin-top: 0;
   color: #567479;
+  width: calc(100% - 32px);
 }
 
 footer .footer ul li:first-child {
@@ -65,7 +67,7 @@ footer .footer ul li:first-child {
 @media screen and (width >= 48em) { 
   footer {
     padding: 71px 0 58px;
-    margin-top: 48px;
+    margin-top: 64px;
   }
 
   footer .footer {
