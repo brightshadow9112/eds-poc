@@ -1,10 +1,11 @@
 /* stylelint-disable */
 .share-your-story {
-    padding-top: 24px;
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    padding: 24px 0 365px;
+    /* padding-bottom: 365px; */
 }
 
 .share-your-story .default-content-wrapper {
@@ -23,23 +24,23 @@
 }
 
 .share-your-story #share-your-story {
-    font-size: 26px;
+    font-size: 1.625rem;
     line-height: 1.22;
-    color: #112D59;
+    color: #112d32;
     margin-bottom: 10px;
     font-weight: 700;
 }
 
 .share-your-story p {
-    font-size: 16px;
+    font-size: 1rem;
     line-height: normal;
     font-weight: 400;
     color: #4f4a41;
     margin:0 0 24px;
+    max-width: 362px;
 }
 
 .share-your-story .icon-button-wrapper {
-    margin: 0;
     z-index: 1;
 }
 
@@ -65,8 +66,12 @@
 .autoslider-wrapper:has( .mobile-only) {
     display: block;
     max-width: 359px !important;
-    margin: -20px 0 0;
+    margin: 0;
     padding: 0;
+    position: absolute;
+    top: auto;
+    left: 0;
+    bottom: 0;
 }
 
 .slick-slide img {
@@ -88,11 +93,29 @@
     display: none;
 }
 
+.autoslider-wrapper:before {
+    content: "Actor portrayals";
+    font-size: 12px;
+    font-weight: 400;
+    color: #fff;
+    bottom: 12px;
+    left: 15px;
+    z-index: 2;
+    position: absolute;
+}
+
+@media (width >= 48em) {
+    .share-your-story .icon-button-wrapper .icon-button-link {
+        max-width: 234px;
+    }
+}
+
 @media screen and (width >= 999px) {
     .share-your-story {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
+        padding: 0;
     }
 
     .share-your-story .default-content-wrapper {
@@ -101,13 +124,17 @@
         padding: 0 16px;
     }
 
+    .share-your-story::before {
+        left: -106px;
+    }
+
     .share-your-story #share-your-story {
         font-size: 36px;
         margin-bottom: 20px;
     }
 
     .share-your-story p {
-        font-size: 24px;
+        font-size: 18px;
         margin-bottom: 32px;
     }
 
@@ -128,9 +155,15 @@
 
     .share-your-story .icon-button-wrapper {
         position: absolute;
-        bottom: 34px;
+        bottom: 69px;
         left: 16px;
         padding: 0;
+    }
+
+    .autoslider-wrapper:before { 
+        font-size: 14px;
+        right: 49px;
+        left: auto;
     }
 }
 
@@ -142,5 +175,9 @@
 
     .share-your-story .icon-button-wrapper {
         left: calc(50vw - 587px + 16px)
+    }
+
+    .share-your-story::before {
+        left: calc(50vw - 587px - 125px + 16px);
     }
 }

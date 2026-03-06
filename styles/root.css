@@ -6,12 +6,14 @@
     --text-color: #131313;
     --link-color: #3b63fb;
     --link-hover-color: #1d3ecf;
+
     /* fonts */
     --body-font-family: roboto, roboto-fallback, sans-serif;
     --heading-font-family: roboto-condensed, roboto-condensed-fallback,
         sans-serif;
 
     /* to be retained */
+
     /* heading sizes */
     --heading-font-size-h1: 1.875rem;
     --heading-font-size-h2: 1.625rem;
@@ -30,8 +32,9 @@
     --font-weight-bold: 700;
     --font-weight-regular: 400;
     --font-weight-light: 300;
+
     /* nav height */
-    --nav-height: 167px;
+    --nav-height: 152px;
 
     /* container size */
     --container-max-width: 1142px;
