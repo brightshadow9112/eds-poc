@@ -35,9 +35,11 @@ body {
     color: var(--bs-body-color);
     background: #ebe9e1;
 }
+
 * {
     scroll-behavior: smooth;
 }
+
 /* Start: Button grid block styles  */
 main {
     min-height: 1000px;
@@ -107,6 +109,7 @@ main {
     :root {
         --scroll-height: calc(var(--nav-height) + 62px + 104px);
     }
+    
     .section.button-grid {
         top: var(--nav-height);
         flex-direction: row;
@@ -142,9 +145,10 @@ main {
         line-height: 27px;
     }
 
-    h2#share-your-story {
-        scroll-margin-top: calc(var(--nav-height) + 62px + 104px + 125px);
-    }
+    /* h2#share-your-story { */
+        /* scroll-margin-top: calc(var(--nav-height) + 62px + 104px + 125px); */
+        /* scroll-margin-top: 800px; */
+    /* } */
 }
 
 @media (width>= 75em) {
@@ -201,8 +205,15 @@ h2#helpful-resources {
     scroll-margin-top: var(--scroll-height);
 }
 
+.columns-container.uniform-spacing h2 {
+    margin-bottom: 16px;
+}
+
 h2#share-your-story {
-    scroll-margin-top: calc(var(--scroll-height) + 125px);
+    /* scroll-margin-top: calc(var(--scroll-height) + 125px); */
+    /* scroll-margin-top: 1800px; */
+    /* scroll-padding-top: 800px; */
+    color: red !important;
 }
 
 p {
@@ -217,9 +228,16 @@ p:has(picture) {
     font-size: 0;
 }
 
-.call-to-action p,
-.columns-container h2 + p {
+/* .call-to-action p,
+.columns-container.uniform-spacing h2 + p {
     font-size: 1rem;
+} */
+
+.columns-container.uniform-spacing .icon-button .icon-button-link {
+    line-height: 26px;
+    height: 80px;
+    padding: 13px 12px 14px 16px;
+    margin-top: 17px;
 }
 
 /* back to top */
@@ -258,9 +276,34 @@ a[href='#top']::before {
         font-size: 18px;
     }
 
-    .call-to-action p,
+    /* .call-to-action p,
     .columns-container h2 + p {
         font-size: 18px;
+    } */
+
+    .columns-container.uniform-spacing h2 {
+        max-width: 400px;
+        margin-bottom: 20px;
+    }
+
+    .columns-container.uniform-spacing p {
+        width: 99%;
+        padding-right: 20px;
+    }
+
+    .columns-container.uniform-spacing .icon-button .icon-button-link {
+        padding: 13px 23px 14px 33px;
+        margin-top: 16px;
+    }
+
+    .columns-container.uniform-spacing .columns > div {
+        flex-direction: unset;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .columns-container.uniform-spacing .columns > div > div {
+        flex: 1;
     }
 }
 
