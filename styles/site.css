@@ -144,11 +144,6 @@ main {
         font-size: 18px;
         line-height: 27px;
     }
-
-    /* h2#share-your-story { */
-        /* scroll-margin-top: calc(var(--nav-height) + 62px + 104px + 125px); */
-        /* scroll-margin-top: 800px; */
-    /* } */
 }
 
 @media (width>= 75em) {
@@ -201,7 +196,8 @@ h5 {
 
 h2#i-wish-i-knew-video-series,
 h2#what-is-agitation-in-alzheimers-dementia,
-h2#helpful-resources {
+h2#helpful-resources,
+h2#your-story {
     scroll-margin-top: var(--scroll-height);
 }
 
@@ -209,11 +205,10 @@ h2#helpful-resources {
     margin-bottom: 16px;
 }
 
-h2#share-your-story {
-    /* scroll-margin-top: calc(var(--scroll-height) + 125px); */
-    /* scroll-margin-top: 1800px; */
-    /* scroll-padding-top: 800px; */
-    color: red !important;
+h2#your-story {
+    height: 0;
+    visibility: hidden;
+    margin: 0;
 }
 
 p {
@@ -286,7 +281,7 @@ a[href='#top']::before {
         margin-bottom: 20px;
     }
 
-    .columns-container.uniform-spacing p {
+    .columns-container.uniform-spacing div h2 ~ p {
         width: 99%;
         padding-right: 20px;
     }
@@ -342,7 +337,7 @@ a[href='#top']::before {
     }
 
     .call-to-action .default-content-wrapper {
-        width: 73%;
+        width: 70%;
         margin: 0 0 16px;
     }
 
@@ -355,6 +350,12 @@ a[href='#top']::before {
     }
 }
 
+@media screen and (width >= 62em) {
+    .call-to-action .default-content-wrapper {
+        width: 75%;
+        margin: 0 0 16px;
+    }
+}
 /* column view section */
 .section.column-view .columns-wrapper img {
     width: 100%;

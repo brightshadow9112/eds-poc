@@ -9,7 +9,7 @@
     max-width: 355px;
     cursor: pointer;
     background-color: var(--bs-color-yellow);
-    border: 1 solid var(--bs-color-yellow);
+    border: 1px solid var(--bs-color-yellow);
     color: var(--bs-color-gray);
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
         border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;

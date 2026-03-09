@@ -101,7 +101,7 @@
     max-width: 885px;
     margin: 0 auto;
     text-align: center;
-    padding: 0;
+    padding: 0 10px;
     width: 100%;
 }
 
@@ -132,6 +132,10 @@
     }
 
     .video-container .default-content-wrapper {
+        padding: 0;
+    }
+
+    .video-container .video-wrapper + .default-content-wrapper {
         width: 97%;
     }
 }

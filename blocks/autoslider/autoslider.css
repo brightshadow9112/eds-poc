@@ -36,8 +36,8 @@
     line-height: normal;
     font-weight: 400;
     color: #4f4a41;
-    margin:0 0 24px;
-    max-width: 362px;
+    margin: 0 0 32px;
+    /* max-width: 362px; */
 }
 
 .share-your-story .icon-button-wrapper {
@@ -135,7 +135,7 @@
 
     .share-your-story p {
         font-size: 18px;
-        margin-bottom: 32px;
+        /* margin-bottom: 32px; */
     }
 
     .share-your-story .icon-button-wrapper .anchor-menu-link {
