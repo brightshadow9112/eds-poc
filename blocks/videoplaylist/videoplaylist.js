@@ -136,6 +136,31 @@ function withAutoplay(src) {
   return u.toString();
 }
 
+const VP_AUTOPLAY_SESSION_KEY = 'vp-session-autoplay';
+const VP_AUTOPLAY_ENABLED_CLASS = 'vp-autoplay-enabled';
+const VP_AUTOPLAY_DISABLED_CLASS = 'vp-autoplay-disabled';
+
+function isSessionAutoplayEnabled() {
+  try {
+    return window.sessionStorage.getItem(VP_AUTOPLAY_SESSION_KEY) === '1';
+  } catch (err) {
+    return false;
+  }
+}
+
+function syncAutoplayStateClasses(target) {
+  if (!target) return;
+  const enabled = isSessionAutoplayEnabled();
+  target.classList.toggle(VP_AUTOPLAY_ENABLED_CLASS, enabled);
+  target.classList.toggle(VP_AUTOPLAY_DISABLED_CLASS, !enabled);
+}
+
+function enableSessionAutoplay() {
+  try {
+    window.sessionStorage.setItem(VP_AUTOPLAY_SESSION_KEY, '1');
+  } catch (err) {}
+}
+
 async function ensureSlickAndJquery() {
   if (!window.jQuery) await loadScript('/scripts/jquery.min.js');
   await loadScript('/scripts/slick.min.js');
@@ -266,6 +291,7 @@ export default async function decorate(block) {
     block.textContent = '';
   }
   block.classList.add('vp');
+  syncAutoplayStateClasses(block);
 
   const shell = el('div', { class: 'vp-shell' });
   const sliderFor = el('div', {
@@ -371,13 +397,18 @@ export default async function decorate(block) {
 
   function advanceIfPossible(fromIndex) {
     if (fromIndex !== active) return;
-    autoplayOnChange = true;
+    autoplayOnChange = isSessionAutoplayEnabled();
     if (active < filteredItems.length - 1)
       $(sliderFor).slick('slickGoTo', active + 1);
     else {
       resumeTime.set(0, 0);
       $(sliderFor).slick('slickGoTo', 0);
     }
+  }
+
+  function removePlayPlaceholder(index) {
+    const slide = slides[index];
+    slide?.querySelector?.('.video-placeholder-play')?.remove();
   }
 
   async function ensureYouTubePlayer(index, iframe) {
@@ -520,6 +551,8 @@ export default async function decorate(block) {
     const provider = media?.getAttribute('data-provider');
     if (!media || !baseSrc) return;
 
+    if (autoPlay) removePlayPlaceholder(index);
+
     preconnectForProvider(provider);
 
     if (media.getAttribute('data-loaded') !== 'true') {
@@ -593,6 +626,16 @@ export default async function decorate(block) {
       ...(poster ? { style: `--vp-poster:url("${poster}")` } : {}),
     });
 
+    media.append(
+      el('div', { class: 'video-placeholder-play' },
+        el('button', {
+          type: 'button',
+          title: 'Play',
+          'aria-label': `Play: ${item.title}`,
+        }),
+      ),
+    );
+
     const slide = el(
       'div',
       {
@@ -655,6 +698,8 @@ export default async function decorate(block) {
 
     const playThis = async () => {
       intent();
+      enableSessionAutoplay();
+      syncAutoplayStateClasses(block);
       if (active !== i) {
         autoplayOnChange = true;
         $(sliderFor).slick('slickGoTo', i);
@@ -683,7 +728,7 @@ export default async function decorate(block) {
   $(sliderNav).on('mousedown touchstart keydown', '.slick-slide', (e) => {
     if (e.type === 'keydown' && !(e.key === 'Enter' || e.key === ' ')) return;
     const idx = Number($(e.currentTarget).attr('data-slick-index')) || 0;
-    autoplayOnChange = true;
+    autoplayOnChange = isSessionAutoplayEnabled();
     preconnectForProvider(filteredItems[idx]?.provider);
   });
 
@@ -712,7 +757,7 @@ export default async function decorate(block) {
     const next = e.target?.closest?.('.vp-next');
     if (!prev && !next) return;
 
-    autoplayOnChange = true;
+    autoplayOnChange = isSessionAutoplayEnabled();
     const target = prev
       ? Math.max(0, active - 1)
       : Math.min(filteredItems.length - 1, active + 1);
@@ -758,8 +803,11 @@ export default async function decorate(block) {
 
   hydrateDurationsInBackground();
 
-  // Load first video player on page load in paused state
-  setTimeout(() => {
-    load(0, { autoPlay: false });
-  }, 300);
+  // Preload first player only when session autoplay is already enabled.
+  // This keeps first-item behavior consistent with other items for a fresh session.
+  if (isSessionAutoplayEnabled()) {
+    setTimeout(() => {
+      load(0, { autoPlay: false });
+    }, 300);
+  }
 }

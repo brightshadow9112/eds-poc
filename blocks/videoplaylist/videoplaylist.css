@@ -88,6 +88,53 @@
 .videoplaylist .vp-slider-for .vp-next {
     display: none !important;
 }
+
+.videoplaylist .vp-media .video-placeholder-play {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.videoplaylist .vp-media .video-placeholder-play button {
+    position: relative;
+    display: block;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    outline: 4px solid #fff;
+    padding: 0;
+    background-color: transparent;
+    border-color: transparent;
+    transform: scale(1);
+    transition-duration: .5s;
+}
+
+.videoplaylist .vp-media .video-placeholder-play button::before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    width: 0;
+    height: 24px;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 18px solid #fff;
+    top: 50%;
+    left: calc(50% + 2px);
+    transform: translate(-50%, -50%);
+}
+
+.videoplaylist .vp-media .video-placeholder-play:hover button {
+    transform: scale(1.1);
+    transition-duration: .5s;
+}
+
+.videoplaylist.vp-autoplay-disabled .ControlBar_module_controlBarWrapper__33f2e772 {
+    display: none;
+}
 .videoplaylist .vp-slider-for .slick-slide {
     display: none;
 }
