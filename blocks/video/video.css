@@ -114,8 +114,9 @@
  }
 
 /* stylelint-disable-next-line selector-pseudo-element-colon-notation */
-.video-container h1:after {
+.video-container h1:first-child:after {
     content: " ";
+    white-space: break-spaces;
 }
 
 @media (width>= 48em) {

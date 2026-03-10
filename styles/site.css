@@ -89,7 +89,7 @@ main {
     margin: 0 0 0 10px;
 }
 
-.section.button-grid .icon-button-icon:not(:first-child) {
+.section.button-grid .icon-button-wrapper:not(:first-child) .icon-button-icon {
     width: 32px;
     height: 32px;
 }
@@ -300,16 +300,19 @@ a[href='#top']::before {
     .columns-container.uniform-spacing .columns > div {
         flex-direction: unset;
         align-items: center;
-        gap: 24px;
+        gap: 1%;
     }
 
     .columns-container.uniform-spacing .columns > div > div {
-        flex: 1;
+        flex: 1 1 50%;
+    }
+
+    .columns-container.uniform-spacing .columns > div > div:first-child {
+        flex: 1 1 49%;
     }
 
     .section.column-view .columns-wrapper img {
-        padding-left: 11px;
-        margin-left: auto;
+        margin-left: 11px;
         position: relative;
         top: 48px;
     }
@@ -395,7 +398,8 @@ a[href='#top']::before {
 
 @media screen and (width >= 48em) {
     .section.column-view .columns-wrapper p:has(img:not([alt*='mobile-only'])) {
-        display: block;
+        display: flex;
+        justify-content: flex-end;
     }
 
     .section.column-view .columns-wrapper p:has(img[alt*='mobile-only']) {

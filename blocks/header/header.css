@@ -69,8 +69,9 @@ header .nav-brand .default-content-wrapper p:nth-child(2) {
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 600;
   margin: 0;
-  position: relative;
-  bottom: 5px;
+  position: absolute;
+  right: 0;
+  top: 47px;
 }
 
 header .nav-brand .default-content-wrapper p:nth-child(2) a {
@@ -83,8 +84,10 @@ header .nav-brand .default-content-wrapper p:nth-child(2) a {
 header .nav-brand .default-content-wrapper p:nth-child(2) a:first-child {
   font-size: 16px;
   margin: 0 13px;
+}
 
-  /* border-bottom: 5px solid var(--bs-color-yellow); */
+header .nav-brand .default-content-wrapper p:nth-child(2) a:nth-child(2) {
+  right: 3px;
 }
 
 body.zoomed-in header .nav-brand .default-content-wrapper p:nth-child(2) a:first-child {
