@@ -85,10 +85,13 @@
     position: relative;
 }
 .videoplaylist .vp-slider-for .vp-prev,
-.videoplaylist .vp-slider-for .vp-next,
-.videoplaylist .vp-slider-for .slick-slide {
+.videoplaylist .vp-slider-for .vp-next {
     display: none !important;
 }
+.videoplaylist .vp-slider-for .slick-slide {
+    display: none;
+}
+
 .videoplaylist .vp-slider-for .slick-slide.slick-active {display: block; left: 0 !important;}
 .videoplaylist .vp-slider-for .slick-slide .vp-iframe{z-index: 999;}
 .videoplaylist .vp-slider-nav .slick-list {width: 100% !important; padding: 0 !important; transform: none !important; font-family: Assistant,Arial,sans-serif;}
