@@ -39,32 +39,39 @@ function buildInput(row) {
   return input;
 }
 
+function decorateRow(row) {
+  // Skip rows that are already transformed (direct <input> child already present).
+  if (row.querySelector(':scope > input')) return;
+
+  const input = buildInput(row);
+  if (!input) return;
+
+  // Move UE instrumentation attrs (data-aue-*, data-richtext-*) from the row
+  // wrapper onto the rendered input so Universal Editor can track/select it.
+  moveInstrumentation(row, input);
+  // Replace all raw column divs / <p> tags with just the <input>.
+  row.replaceChildren(input);
+}
+
 export default function decorate(block) {
-  // Guard: if already decorated (form wrapper present), do not run again.
-  if (block.querySelector(':scope > form')) return;
+  // Find or create the <form> wrapper. Never call replaceChildren on the block
+  // itself — that would break Universal Editor's reference to the container.
+  let form = block.querySelector(':scope > form');
+  if (!form) {
+    form = document.createElement('form');
+    block.append(form);
+  }
 
-  const form = document.createElement('form');
-
-  // Snapshot children before moving them, since moving a node changes the live collection.
-  [...block.children].forEach((row) => {
-    const input = buildInput(row);
-    if (input) {
-      // Transfer UE instrumentation (data-aue-*, data-richtext-*) from the
-      // row wrapper onto the visible <input> so Universal Editor can still
-      // track and edit this field item.
-      moveInstrumentation(row, input);
-      // Replace raw cell divs with just the rendered input, but keep the row div
-      // itself — UE adds new items as direct children of the block, so rows
-      // must remain as real DOM nodes (not be destroyed or cloned).
-      row.replaceChildren(input);
-    }
-    // DOM-move the row into the form. Moving (not cloning) preserves every
-    // attribute already on the row element including any remaining data-aue-*.
-    form.append(row);
+  // UE inserts new items as direct children of the block (outside <form>).
+  // Process each such raw row and DOM-move it into the form.
+  // DOM-moving (not cloning) preserves all data-aue-* attrs still on the row.
+  [...block.children].forEach((child) => {
+    if (child === form) return; // skip the form itself
+    decorateRow(child);
+    form.append(child);
   });
 
-  // block is now empty (all rows were moved out above). Appending the form
-  // here avoids replaceChildren() on the block itself, which would force
-  // Universal Editor to lose its reference to the container node.
-  block.append(form);
+  // Decorate any rows already inside the form (handles the initial page-load
+  // case where items were server-rendered directly inside the block).
+  [...form.children].forEach(decorateRow);
 }
