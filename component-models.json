@@ -1026,6 +1026,63 @@
     ]
   },
   {
+    "id": "form-field",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "inputClass",
+        "label": "Input Class",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "name",
+        "label": "Input Name",
+        "value": ""
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "type",
+        "label": "Input Type",
+        "value": "text",
+        "options": [
+          {
+            "name": "Text",
+            "value": "text"
+          },
+          {
+            "name": "Radio",
+            "value": "radio"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "value",
+        "label": "Input Value",
+        "value": ""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "placeholder",
+        "label": "Placeholder",
+        "value": ""
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "checked",
+        "label": "Checked (for radio)",
+        "value": false
+      }
+    ]
+  },
+  {
     "id": "videoslide",
     "fields": [
       {
