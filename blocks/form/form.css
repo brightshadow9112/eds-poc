@@ -4,11 +4,20 @@
   gap: 12px;
 }
 
+/* Each item row is a <div> wrapper kept for UE instrumentation.
+   display:contents makes it invisible to flex layout so the inputs
+   behave as direct flex children of <form>. */
+.form form > div {
+  display: contents;
+}
+
 .form input {
   font: inherit;
   padding: 10px 12px;
   border: 1px solid #d2d8e0;
   border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .form input[type='radio'] {
