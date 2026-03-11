@@ -36,20 +36,6 @@
       "id": "form-field",
       "fields": [
         {
-          "component": "text",
-          "valueType": "string",
-          "name": "inputClass",
-          "label": "Input Class",
-          "value": ""
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "name",
-          "label": "Input Name",
-          "value": ""
-        },
-        {
           "component": "select",
           "valueType": "string",
           "name": "type",
@@ -65,6 +51,20 @@
               "value": "radio"
             }
           ]
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "name",
+          "label": "Input Name",
+          "value": ""
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "inputClass",
+          "label": "Input Class",
+          "value": ""
         },
         {
           "component": "text",

@@ -10,7 +10,11 @@ function isTruthy(val) {
 }
 
 function buildInput(row) {
-  const [classCell, nameCell, typeCell, valueCell, placeholderCell, checkedCell] = row.children;
+  // Field order matches the model definition order (which controls column render order):
+  // col 0: type  col 1: name  col 2: inputClass  col 3: value  col 4: placeholder  col 5: checked
+  // Type is column 0 so it is ALWAYS positionally correct even when optional trailing
+  // fields are empty and their cells are absent from the DOM.
+  const [typeCell, nameCell, classCell, valueCell, placeholderCell, checkedCell] = row.children;
   const inputType = getText(typeCell).toLowerCase() || 'text';
 
   if (!['text', 'radio'].includes(inputType)) return null;
@@ -18,11 +22,11 @@ function buildInput(row) {
   const input = document.createElement('input');
   input.setAttribute('type', inputType);
 
-  const cls = getText(classCell);
-  if (cls) input.className = cls;
-
   const name = getText(nameCell);
   if (name) input.setAttribute('name', name);
+
+  const cls = getText(classCell);
+  if (cls) input.className = cls;
 
   const val = getText(valueCell);
   if (val) input.setAttribute('value', val);
