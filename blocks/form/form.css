@@ -20,8 +20,17 @@
   box-sizing: border-box;
 }
 
+/* Radio rows: input + label sit inline, no full-width stretch */
 .form input[type='radio'] {
   width: 18px;
   height: 18px;
   padding: 0;
+  margin-inline-end: 6px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.form input[type='radio'] + label {
+  font: inherit;
+  cursor: pointer;
 }
